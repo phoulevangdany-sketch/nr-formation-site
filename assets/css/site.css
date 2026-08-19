@@ -628,3 +628,7 @@ address{font-style:normal}
 .carte:hover h3,.offre:hover .offre__titre{transform:translateX(4px);color:var(--petrole)}
 .carte:hover h3::after,.offre:hover .offre__titre::after{transform:scaleX(1)}
 .carte h3{display:block}
+
+/* navigation : 6 entrées + bouton sans retour à la ligne */
+@media (min-width:980px){.nav ul{gap:1.35rem}.nav a:not(.bouton){white-space:nowrap}.nav .bouton{white-space:nowrap;padding:.7rem 1rem}.entete__barre{gap:1.25rem}}
+@media (min-width:1180px){.nav ul{gap:1.75rem}}
