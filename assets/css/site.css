@@ -518,3 +518,113 @@ address{font-style:normal}
 .fiche__tete{grid-template-columns:1fr!important;gap:.75rem}
 .fiche__tete .etiquettes{order:-1}
 .fiche__tete .chapo{max-width:70ch}
+
+/* ==================================================================
+   Système d’interactions — chaque élément cliquable « répond » à la souris
+   (couleur, soulignement animé, flèche, légère élévation) sans déplacer la mise en page
+   ================================================================== */
+/* Liens de navigation : couleur + soulignement qui glisse, plus de contraste sur la page active */
+.nav a:not(.bouton){transition:color .25s var(--courbe)}
+.nav a:not(.bouton):hover{color:var(--petrole)}
+.nav a[aria-current="page"]{color:var(--navy)}
+
+/* Titres cliquables (cartes, offres, sommaires) : passage en pétrole + flèche qui avance */
+.carte h3 a,.offre__titre a,.sommaire a,.pied a,.fil a{transition:color .25s var(--courbe),letter-spacing .25s var(--courbe)}
+.carte:hover h3 a,.carte:hover h3,.offre:hover .offre__titre a{color:var(--petrole)}
+.carte:hover .lien-fleche{color:var(--petrole)}
+.carte:hover .lien-fleche::after{transform:translateX(6px)}
+.carte .num{transition:letter-spacing .35s var(--courbe),color .25s}
+.carte:hover .num{letter-spacing:.2em;color:var(--navy)}
+
+/* Liens « flèche » : soulignement qui pousse sous le texte */
+.lien-fleche{position:relative;transition:color .25s var(--courbe)}
+.lien-fleche::before{content:"";position:absolute;left:0;bottom:-3px;height:2px;width:calc(100% - 1.4rem);background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--courbe)}
+.lien-fleche:hover{color:var(--petrole)}
+.lien-fleche:hover::before{transform:scaleX(1)}
+
+/* Sommaire latéral : barre pétrole qui apparaît à gauche */
+.sommaire a{position:relative;padding-left:0;transition:padding-left .3s var(--courbe),color .25s}
+.sommaire a::before{content:"";position:absolute;left:0;top:50%;width:0;height:2px;background:var(--petrole);transform:translateY(-50%);transition:width .3s var(--courbe)}
+.sommaire a:hover{padding-left:1rem;color:var(--petrole)}
+.sommaire a:hover::before{width:.6rem}
+
+/* Pied de page : soulignement animé plutôt que souligné brut */
+.pied ul a{position:relative;text-decoration:none}
+.pied ul a::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--courbe)}
+.pied ul a:hover{text-decoration:none}
+.pied ul a:hover::after{transform:scaleX(1)}
+
+/* Boutons : remplissage qui glisse + flèche, état enfoncé net */
+.bouton{position:relative;overflow:hidden;isolation:isolate}
+.bouton::before{content:"";position:absolute;inset:0;background:var(--petrole);transform:translateX(-101%);transition:transform .45s var(--courbe);z-index:-1}
+.bouton:hover::before{transform:translateX(0)}
+.bouton--contour::before,.bouton--inv-contour::before{background:var(--navy)}
+.bouton--inv::before{background:var(--gris)}
+.bouton:active{transform:translateY(1px) scale(.995);box-shadow:none}
+
+/* Bandeau de faits : la case s’éclaire au survol */
+.fiche dl.faits div{transition:background .3s var(--courbe)}
+.fiche dl.faits div:hover{background:#fff}
+.faits dd{transition:color .25s}
+.fiche dl.faits div:hover dd{color:var(--petrole)}
+
+/* Offres (catalogue) : flèche du bouton et lien PDF qui réagissent avec toute la carte */
+.offre:hover .bouton .fleche{transform:translateX(4px)}
+.offre:hover .offre__tag{color:var(--navy)}
+.offre__faits li{transition:color .25s}
+.offre__faits li:hover{color:var(--navy)}
+.offre__faits li:hover svg{color:var(--navy)}
+
+/* Étapes : le numéro passe en pétrole et avance au survol de l’étape */
+.etapes li{transition:background .35s var(--courbe)}
+.etapes li::before{transition:transform .5s var(--courbe),color .3s,opacity .7s}
+.etapes li:hover::before{color:var(--petrole);transform:translateX(4px);opacity:1}
+.etapes li:hover h3{color:var(--petrole)}
+.etapes h3{transition:color .3s}
+
+/* Frise : point qui grossit, titre en relief */
+.frise li{transition:transform .35s var(--courbe)}
+.frise li:hover .frise__point{transform:scale(1.45)!important}
+.frise li:hover .frise__jour{background:var(--brume)}
+.frise__jour{transition:background .3s}
+
+/* Héros : repères qui s’éclairent */
+.heros__repères div{transition:transform .35s var(--courbe)}
+.heros__repères div:hover{transform:translateX(4px)}
+.heros__repères strong{transition:color .3s}
+.heros__repères div:hover strong{color:#9DD0D6}
+
+/* FAQ : la question passe en pétrole, le + tourne déjà */
+.faq summary{transition:color .25s,padding-left .3s var(--courbe)}
+.faq summary:hover{color:var(--petrole);padding-left:.35rem}
+
+/* Simulateur : option qui se soulève et s’éclaire */
+.simu__option{transition:border-color .25s,background .25s,transform .25s var(--courbe),box-shadow .25s var(--courbe)}
+.simu__option:hover{transform:translateY(-2px);box-shadow:0 10px 24px -18px rgba(10,26,47,.5);background:#fff}
+.simu__option:hover .simu__libelle{color:var(--petrole)}
+.simu__libelle{transition:color .25s}
+
+/* Citations : léger décalage */
+.citation{transition:transform .4s var(--courbe),border-color .3s}
+.citation:hover{transform:translateX(6px);border-color:var(--petrole)}
+
+/* Formulaire : champ qui se « réveille » */
+.champ input:hover,.champ select:hover,.champ textarea:hover{border-color:var(--navy)}
+.champ label{transition:color .25s}
+.champ:focus-within label{color:var(--petrole)}
+
+/* Logo : micro-zoom */
+.logo img{transition:transform .4s var(--courbe)}
+.logo:hover img{transform:scale(1.03)}
+
+/* Respect de la préférence « réduire les animations » */
+@media (prefers-reduced-motion:reduce){
+  .bouton::before{transition:none}.lien-fleche::before,.pied ul a::after{transition:none}
+  .carte,.offre,.fiche,.etapes li,.frise li,.heros__repères div,.citation,.simu__option,.sommaire a{transition:none}
+}
+/* titres de cartes : décalage + soulignement pétrole qui se dessine (plus lisible que la seule couleur) */
+.carte h3,.offre__titre{position:relative;display:inline-block;transition:transform .35s var(--courbe),color .3s}
+.carte h3::after,.offre__titre::after{content:"";position:absolute;left:0;bottom:-4px;height:3px;width:100%;background:var(--petrole);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--courbe)}
+.carte:hover h3,.offre:hover .offre__titre{transform:translateX(4px);color:var(--petrole)}
+.carte:hover h3::after,.offre:hover .offre__titre::after{transform:scaleX(1)}
+.carte h3{display:block}
