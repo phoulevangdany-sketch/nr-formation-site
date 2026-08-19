@@ -376,3 +376,14 @@ address{font-style:normal}
 
 /* héros de pages intérieures : sujet décalé à droite, hors du texte */
 .heros--page .heros__media img{object-position:72% 35%}
+
+/* v3 — benchmark */
+.mb-05{margin-bottom:.5rem}
+.coches{list-style:none;padding:0;margin:0;display:grid;gap:.8rem}
+.coches li{position:relative;padding-left:1.9rem}
+.coches li::before{content:"";position:absolute;left:0;top:.45em;width:.9rem;height:.5rem;border-left:2px solid var(--petrole);border-bottom:2px solid var(--petrole);transform:rotate(-45deg)}
+.heros__repères .src{font-size:.8em;opacity:.8}
+.tableau--compare th[scope="row"]{font-weight:600;color:var(--navy);text-transform:none;letter-spacing:0;font-size:var(--fs-1);border-bottom:1px solid var(--ligne)}
+.tableau--compare td:last-child{background:rgba(13,46,58,.06);font-weight:500}
+.tableau--compare thead th:last-child{color:var(--navy)}
+.section--brume .encadre{background:#fff}
