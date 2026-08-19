@@ -3,6 +3,10 @@
   "use strict";
   document.documentElement.classList.remove("no-js");
 
+  /* Vidéo de signature : pas de lecture automatique si l'utilisateur a réduit les animations */
+  var vid = document.querySelector(".signature__video");
+  if (vid && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { try { vid.pause(); vid.removeAttribute("autoplay"); } catch (e) {} }
+
   /* Menu mobile */
   var burger = document.querySelector(".burger");
   var navMobile = document.getElementById("nav-mobile");

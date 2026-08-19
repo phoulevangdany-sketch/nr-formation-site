@@ -408,3 +408,9 @@ address{font-style:normal}
 .simu__verdict--oui{border-color:#1F6B3A}.simu__verdict--doute{border-color:#B7791F}.simu__verdict--non{border-color:#9B1C1C}
 .simu__resultat h3{font-size:var(--fs-2)}
 .simu__resultat:focus{outline:none}
+
+/* ---------- Signature vidéo (extrait 6 s, muet, en boucle) : bande de marque avant l’appel à l’action ---------- */
+.signature{background:#061422;line-height:0}
+.signature__video{width:100%;height:clamp(220px,42vw,560px);object-fit:cover;object-position:center;display:block}
+@media (prefers-reduced-motion:reduce){.signature__video{display:none}.signature{background:#061422 url("../video/signature-poster.jpg") no-repeat center/cover;height:clamp(220px,42vw,560px)}}
+.pied__signature{color:#fff;font-weight:600;letter-spacing:.02em;display:inline-block;margin-bottom:.5rem}
