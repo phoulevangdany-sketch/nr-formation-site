@@ -30,6 +30,12 @@
   /* Formulaire de contact : validation et envoi sans rechargement */
   var form = document.getElementById("formulaire-contact");
   if (!form) return;
+  /* Pré-remplissage depuis le simulateur d'éligibilité (paramètres d'URL, rien n'est envoyé avant validation) */
+  try {
+    var prm = new URLSearchParams(window.location.search);
+    ["profil", "poste", "message"].forEach(function (k) { var v = prm.get(k); var c = form.elements[k]; if (v && c && !c.value) c.value = v; });
+    if (prm.get("message")) { var m = form.elements["message"]; if (m) { m.value = m.value + "\n\nMes coordonnées et ma demande : "; } }
+  } catch (e) {}
   var retour = document.getElementById("retour-formulaire");
   var bouton = form.querySelector('button[type="submit"]');
 

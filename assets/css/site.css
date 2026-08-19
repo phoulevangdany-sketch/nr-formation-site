@@ -387,3 +387,24 @@ address{font-style:normal}
 .tableau--compare td:last-child{background:rgba(13,46,58,.06);font-weight:500}
 .tableau--compare thead th:last-child{color:var(--navy)}
 .section--brume .encadre{background:#fff}
+
+/* ---------- Simulateur d’éligibilité ---------- */
+.simu{border:1px solid var(--ligne);background:#fff;padding:clamp(1.5rem,4vw,2.75rem);position:relative}
+.simu__progression{height:3px;background:var(--gris);position:absolute;left:0;right:0;top:0}
+.simu__progression span{display:block;height:100%;width:0;background:var(--petrole);transition:width .4s var(--courbe)}
+.simu__etape{font-size:var(--fs-0);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrole);margin:0 0 1rem}
+.simu__question{border:0;padding:0;margin:0;min-width:0}
+.simu__question legend{font-size:var(--fs-3);font-weight:700;color:var(--navy);letter-spacing:-.01em;line-height:1.15;margin-bottom:1.5rem;padding:0}
+.simu__options{display:grid;gap:.75rem}
+.simu__option{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1rem;align-items:center;border:1px solid var(--ligne);padding:1rem 1.15rem;cursor:pointer;transition:border-color .25s,background .25s}
+.simu__option:hover{border-color:var(--navy)}
+.simu__option:has(input:checked){border-color:var(--navy);background:var(--brume);box-shadow:inset 3px 0 0 var(--navy)}
+.simu__option input{width:1.15rem;height:1.15rem;accent-color:var(--navy);grid-row:span 2;margin:0}
+.simu__libelle{font-weight:600;color:var(--navy)}
+.simu__aide{grid-column:2;font-size:var(--fs-0);color:var(--texte-2)}
+.simu__actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem;justify-content:space-between}
+.simu .erreur{color:#9B1C1C;font-weight:600;font-size:var(--fs-0);margin-top:.75rem}
+.simu__verdict{font-size:var(--fs-3);line-height:1.2;padding-left:1.25rem;border-left:4px solid var(--navy)}
+.simu__verdict--oui{border-color:#1F6B3A}.simu__verdict--doute{border-color:#B7791F}.simu__verdict--non{border-color:#9B1C1C}
+.simu__resultat h3{font-size:var(--fs-2)}
+.simu__resultat:focus{outline:none}
