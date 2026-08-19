@@ -373,3 +373,6 @@ address{font-style:normal}
 
 /* ancres sous l’en-tête collant */
 [id]{scroll-margin-top:96px}
+
+/* héros de pages intérieures : sujet décalé à droite, hors du texte */
+.heros--page .heros__media img{object-position:72% 35%}

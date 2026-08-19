@@ -75,7 +75,7 @@
       })
       .catch(function () {
         retour.hidden = false; retour.className = "retour retour--ko";
-        retour.textContent = "L’envoi n’a pas abouti. Vous pouvez nous écrire directement à gestion@nrformation.fr.";
+        retour.textContent = "L’envoi n’a pas abouti. Vous pouvez nous écrire directement à contact@nrformation.fr.";
       })
       .finally(function () { bouton.disabled = false; bouton.textContent = "Envoyer la demande"; });
   });
