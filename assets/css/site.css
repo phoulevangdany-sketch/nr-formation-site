@@ -445,3 +445,20 @@ address{font-style:normal}
 .calendrier .jour{font-weight:800;color:var(--navy);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .calendrier .quoi strong{display:block;color:var(--navy)}
 .calendrier .quoi span{color:var(--texte-2);font-size:var(--fs-0)}
+
+/* ---------- Fiches : en-tête visuel navy + photo ---------- */
+.fiche{box-shadow:0 1px 0 var(--ligne),0 12px 30px -18px rgba(10,26,47,.25)}
+.fiche__visuel{position:relative;background:var(--navy);aspect-ratio:16/5;overflow:hidden}
+.fiche__visuel picture,.fiche__visuel img:not(.fiche__monogramme){width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;opacity:.78}
+.fiche__visuel::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,26,47,.85) 0%,rgba(10,26,47,.35) 55%,rgba(10,26,47,.15) 100%)}
+.fiche__monogramme{position:absolute;left:clamp(1.5rem,3vw,2.5rem);bottom:1.25rem;width:44px;height:44px;z-index:1;opacity:.95}
+.fiche__tete{background:var(--navy);color:#fff;border-bottom:0}
+.fiche__tete h2,.fiche__tete .chapo{color:#fff}
+.fiche__tete .chapo{color:var(--texte-inv-2)}
+.fiche__tete .etiquette{border-color:rgba(255,255,255,.6);color:#fff}
+.fiche__tete .etiquette--plein{background:#fff;color:var(--navy);border-color:#fff}
+.fiche dl.faits{border-top:0}
+.fiche__pied{gap:.75rem}
+.fiche__pied .bouton--contour{background:#fff}
+.sommaire{background:#fff;border:1px solid var(--ligne);padding:1.25rem}
+.sommaire .titre{margin-top:0}
