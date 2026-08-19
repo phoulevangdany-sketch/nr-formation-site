@@ -438,13 +438,6 @@ address{font-style:normal}
 .fiche dl.faits dt{font-size:var(--fs-0);letter-spacing:.08em;text-transform:uppercase;color:var(--petrole);font-weight:600;margin:0 0 .25rem}
 .fiche dl.faits dd{margin:0;font-weight:600;color:var(--navy);font-size:var(--fs-1);line-height:1.35}
 .fiche dl.faits dd small{display:block;font-weight:400;color:var(--texte-2);font-size:var(--fs-0);margin-top:.15rem}
-/* calendrier type */
-.calendrier{list-style:none;margin:0;padding:0;display:grid;gap:0;border-left:2px solid var(--navy)}
-.calendrier li{display:grid;grid-template-columns:5.5rem 1fr;gap:1rem;padding:.9rem 0 .9rem 1.25rem;position:relative}
-.calendrier li::before{content:"";position:absolute;left:-7px;top:1.35rem;width:12px;height:12px;background:#fff;border:2px solid var(--navy)}
-.calendrier .jour{font-weight:800;color:var(--navy);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
-.calendrier .quoi strong{display:block;color:var(--navy)}
-.calendrier .quoi span{color:var(--texte-2);font-size:var(--fs-0)}
 
 /* ---------- Fiches : en-tête visuel navy + photo ---------- */
 .fiche{box-shadow:0 1px 0 var(--ligne),0 12px 30px -18px rgba(10,26,47,.25)}
@@ -472,15 +465,30 @@ address{font-style:normal}
 .etapes li::before{transition:transform .7s var(--courbe),opacity .7s var(--courbe)}
 .etapes li.apparait:not(.visible)::before{transform:translateX(-10px);opacity:0}
 .etapes li.apparait.visible::before{transform:none;opacity:.9}
-/* calendrier animé : le trait se dessine, les repères s'allument */
-.calendrier--anime{border-left-color:transparent;position:relative}
-.calendrier--anime::before{content:"";position:absolute;left:-2px;top:0;width:2px;height:100%;background:var(--navy);transform:scaleY(0);transform-origin:top;transition:transform 1.4s var(--courbe)}
-.calendrier--anime.visible::before{transform:scaleY(1)}
-.calendrier--anime li::before{background:#fff;transition:background .4s var(--courbe) , transform .4s var(--courbe)}
-.calendrier--anime.visible li::before{background:var(--navy);transform:scale(1.15)}
-.calendrier--anime li:nth-child(1)::before{transition-delay:.2s}.calendrier--anime li:nth-child(2)::before{transition-delay:.45s}.calendrier--anime li:nth-child(3)::before{transition-delay:.7s}.calendrier--anime li:nth-child(4)::before{transition-delay:.95s}.calendrier--anime li:nth-child(5)::before{transition-delay:1.2s}
-.calendrier .jour{display:inline-block;transition:color .4s}
 .heros h1,.heros .accroche,.heros__actions,.heros__repères,.heros .surtitre{animation:entree .9s var(--courbe) both}
 .heros .accroche{animation-delay:.12s}.heros__actions{animation-delay:.24s}.heros__repères{animation-delay:.36s}
 @keyframes entree{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.heros h1,.heros .accroche,.heros__actions,.heros__repères,.heros .surtitre{animation:none}.calendrier--anime{border-left-color:var(--navy)}.calendrier--anime::before{display:none}.calendrier--anime li::before{background:var(--navy)}}
+@media (prefers-reduced-motion:reduce){.heros h1,.heros .accroche,.heros__actions,.heros__repères,.heros .surtitre{animation:none}}
+
+/* ---------- Frise (calendrier type) : horizontale sur grand écran, verticale sur mobile, trait qui se dessine ---------- */
+.frise{list-style:none;margin:0;padding:0;display:grid;gap:2.25rem 0;position:relative;counter-reset:frise}
+.frise li{position:relative;display:grid;gap:.4rem;padding-left:2.75rem}
+.frise__jour{display:inline-block;justify-self:start;font-size:var(--fs-0);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);background:#fff;padding:.35rem .65rem;line-height:1}
+.frise li strong{font-size:var(--fs-2);color:#fff;line-height:1.2}
+.frise li span:not(.frise__jour):not(.frise__point){color:var(--texte-inv-2);font-size:var(--fs-1);max-width:34ch}
+.frise__point{position:absolute;left:0;top:.15rem;width:1.1rem;height:1.1rem;border:2px solid #fff;background:var(--navy);box-shadow:0 0 0 4px var(--navy);transition:background .4s var(--courbe),transform .4s var(--courbe)}
+.frise::before{content:"";position:absolute;left:.5rem;top:.6rem;bottom:.6rem;width:2px;background:rgba(255,255,255,.25)}
+.frise::after{content:"";position:absolute;left:.5rem;top:.6rem;bottom:.6rem;width:2px;background:#fff;transform:scaleY(0);transform-origin:top;transition:transform 1.6s var(--courbe)}
+.frise.visible::after{transform:scaleY(1)}
+.frise.visible .frise__point{background:#fff;transform:scale(1.1)}
+.frise li:nth-child(1) .frise__point{transition-delay:.15s}.frise li:nth-child(2) .frise__point{transition-delay:.5s}.frise li:nth-child(3) .frise__point{transition-delay:.85s}.frise li:nth-child(4) .frise__point{transition-delay:1.2s}.frise li:nth-child(5) .frise__point{transition-delay:1.55s}
+@media (min-width:900px){
+  .frise{grid-template-columns:repeat(5,1fr);gap:0 1.5rem;padding-top:2.9rem}
+  .frise li{padding-left:0;padding-top:1.5rem}
+  .frise__jour{position:absolute;top:-2.9rem;left:0}
+  .frise__point{top:0;left:0}
+  .frise::before,.frise::after{left:.55rem;right:.55rem;top:3.45rem;bottom:auto;height:2px;width:auto;transform-origin:left}
+  .frise::after{transform:scaleX(0)}
+  .frise.visible::after{transform:scaleX(1)}
+}
+@media (prefers-reduced-motion:reduce){.frise::after{transform:none}.frise .frise__point{background:#fff}}

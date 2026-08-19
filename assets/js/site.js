@@ -29,10 +29,10 @@
   /* Apparition au défilement — appliquée automatiquement aux éléments de structure (sans JS, tout reste visible) */
   var reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reduit) {
-    var auto = ".section__tete, .carte, .etapes li, .calendrier li, .fiche, .faits div, .citation, .encadre, .deux > .c5, .deux > .c6, .deux > .c7, .deux > .d6, .deux > .d7, .deux > .d9, .tableau--compare, .faq details, .kpi div";
+    var auto = ".section__tete, .carte, .etapes li, .frise li, .fiche, .faits div, .citation, .encadre, .deux > .c5, .deux > .c6, .deux > .c7, .deux > .d6, .deux > .d7, .deux > .d9, .tableau--compare, .faq details, .kpi div";
     document.querySelectorAll(auto).forEach(function (el, i) { if (!el.classList.contains("apparait")) { el.classList.add("apparait"); if (!el.hasAttribute("data-delai")) { var idx = Array.prototype.indexOf.call(el.parentNode.children, el); el.setAttribute("data-delai", String(Math.min(idx % 6, 5))); } } });
     /* calendrier : le trait se dessine quand la frise entre dans l'écran */
-    document.querySelectorAll(".calendrier").forEach(function (c) { c.classList.add("calendrier--anime"); });
+    document.querySelectorAll(".frise").forEach(function (c) { c.classList.add("frise--anime"); });
     /* compteurs du héros */
     document.querySelectorAll(".heros__repères strong").forEach(function (el) {
       var m = el.textContent.match(/^(\D*?)(\d+)(.*)$/); if (!m) return;
@@ -50,7 +50,7 @@
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     cibles.forEach(function (c) { obs.observe(c); });
     var obsCal = new IntersectionObserver(function (entrees) { entrees.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("visible"); obsCal.unobserve(e.target); } }); }, { threshold: 0.2 });
-    document.querySelectorAll(".calendrier--anime").forEach(function (c) { obsCal.observe(c); });
+    document.querySelectorAll(".frise--anime").forEach(function (c) { obsCal.observe(c); });
   } else {
     cibles.forEach(function (c) { c.classList.add("visible"); });
   }
