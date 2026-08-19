@@ -418,3 +418,30 @@ address{font-style:normal}
 .heros__video.prete{opacity:1}
 @media (max-width:899px),(prefers-reduced-motion:reduce){.heros__video{display:none}}
 .pied__signature{color:#fff;font-weight:600;letter-spacing:.02em;display:inline-block;margin-bottom:.5rem}
+
+/* ---------- Barre d’action mobile ---------- */
+.barre-mobile{display:none}
+@media (max-width:899px){
+  .barre-mobile{display:grid;grid-template-columns:1fr 1.6fr;position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-top:1px solid var(--ligne);box-shadow:0 -6px 18px rgba(10,26,47,.08);padding:.5rem .75rem calc(.5rem + env(safe-area-inset-bottom));gap:.5rem}
+  .barre-mobile a{display:flex;align-items:center;justify-content:center;gap:.45rem;text-decoration:none;font-weight:600;font-size:var(--fs-1);padding:.8rem .6rem;border:1px solid var(--navy);color:var(--navy);min-height:48px}
+  .barre-mobile__principal{background:var(--navy);color:#fff!important}
+  body{padding-bottom:76px}
+  .pied{padding-bottom:1rem}
+}
+@media print{.barre-mobile{display:none}}
+/* bandeau de faits clés des fiches (format opportunité) */
+.fiche dl.faits{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-bottom:1px solid var(--ligne);background:var(--brume)}
+@media (min-width:700px){.fiche dl.faits{grid-template-columns:repeat(3,1fr)}}
+
+.fiche dl.faits div{padding:1rem clamp(.9rem,1.6vw,1.25rem);border-right:1px solid var(--ligne);border-bottom:1px solid var(--ligne)}
+.fiche dl.faits dt,.fiche dl.faits dd{padding:0;border:0;text-transform:none;letter-spacing:0}
+.fiche dl.faits dt{font-size:var(--fs-0);letter-spacing:.08em;text-transform:uppercase;color:var(--petrole);font-weight:600;margin:0 0 .25rem}
+.fiche dl.faits dd{margin:0;font-weight:600;color:var(--navy);font-size:var(--fs-1);line-height:1.35}
+.fiche dl.faits dd small{display:block;font-weight:400;color:var(--texte-2);font-size:var(--fs-0);margin-top:.15rem}
+/* calendrier type */
+.calendrier{list-style:none;margin:0;padding:0;display:grid;gap:0;border-left:2px solid var(--navy)}
+.calendrier li{display:grid;grid-template-columns:5.5rem 1fr;gap:1rem;padding:.9rem 0 .9rem 1.25rem;position:relative}
+.calendrier li::before{content:"";position:absolute;left:-7px;top:1.35rem;width:12px;height:12px;background:#fff;border:2px solid var(--navy)}
+.calendrier .jour{font-weight:800;color:var(--navy);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.calendrier .quoi strong{display:block;color:var(--navy)}
+.calendrier .quoi span{color:var(--texte-2);font-size:var(--fs-0)}
