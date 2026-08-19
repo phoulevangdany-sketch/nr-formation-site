@@ -492,3 +492,29 @@ address{font-style:normal}
   .frise.visible::after{transform:scaleX(1)}
 }
 @media (prefers-reduced-motion:reduce){.frise::after{transform:none}.frise .frise__point{background:#fff}}
+
+/* ---------- Catalogue : cartes « offre » ---------- */
+.offres{display:grid;gap:1.5rem}
+.offre{display:grid;background:#fff;border:1px solid var(--ligne);box-shadow:0 1px 0 var(--ligne),0 14px 34px -24px rgba(10,26,47,.35);transition:transform .45s var(--courbe),box-shadow .45s var(--courbe)}
+.offre:hover{transform:translateY(-3px);box-shadow:0 1px 0 var(--ligne),0 24px 48px -24px rgba(10,26,47,.4)}
+@media (min-width:900px){.offre{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.offre__visuel{display:block;background:var(--navy);overflow:hidden;min-height:220px}
+.offre__visuel picture,.offre__visuel img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.offre__visuel img{transition:transform 1.2s var(--courbe)}
+.offre:hover .offre__visuel img{transform:scale(1.04)}
+.offre__corps{padding:clamp(1.5rem,3vw,2.25rem);display:grid;gap:.9rem;align-content:start}
+.offre__tag{font-size:var(--fs-0);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--petrole);margin:0}
+.offre__titre{font-size:var(--fs-3);line-height:1.15;margin:0}
+.offre__titre a{text-decoration:none;color:var(--navy)}
+.offre__titre a:hover{text-decoration:underline;text-underline-offset:.2em}
+.offre__desc{color:var(--texte-2);margin:0;max-width:60ch}
+.offre__faits{list-style:none;margin:.25rem 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:.55rem 1.5rem}
+@media (min-width:600px){.offre__faits{grid-template-columns:1fr 1fr}}
+.offre__faits li{display:flex;gap:.6rem;align-items:flex-start;font-size:var(--fs-0);color:var(--texte)}
+.offre__faits svg{flex:none;color:var(--petrole);margin-top:.1rem}
+.offre__pied{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;align-items:center;margin-top:.75rem;padding-top:1.25rem;border-top:1px solid var(--ligne)}
+.sommaire ul{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
+/* en-tête de fiche : étiquettes au-dessus du titre, texte sur toute la largeur */
+.fiche__tete{grid-template-columns:1fr!important;gap:.75rem}
+.fiche__tete .etiquettes{order:-1}
+.fiche__tete .chapo{max-width:70ch}
