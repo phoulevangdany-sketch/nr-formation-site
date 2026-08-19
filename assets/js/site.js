@@ -3,13 +3,14 @@
   "use strict";
   document.documentElement.classList.remove("no-js");
 
-  /* Vidéo d'ambiance du héros : seulement sur grand écran, sans économie de données ni réduction des animations ; chargée après le reste */
+  /* Vidéo d'ambiance du héros : version allégée sur mobile ; jamais si économie de données ou animations réduites ; chargée après le reste */
   var heroVid = document.querySelector(".heros__video");
-  if (heroVid && window.matchMedia && window.matchMedia("(min-width: 900px)").matches
+  if (heroVid && window.matchMedia
       && !window.matchMedia("(prefers-reduced-motion: reduce)").matches
       && !(navigator.connection && navigator.connection.saveData)) {
+    var large = window.matchMedia("(min-width: 900px)").matches;
     window.addEventListener("load", function () {
-      heroVid.src = heroVid.getAttribute("data-src");
+      heroVid.src = large ? heroVid.getAttribute("data-src") : heroVid.getAttribute("data-src-mobile");
       heroVid.addEventListener("canplay", function () { heroVid.classList.add("prete"); var p = heroVid.play(); if (p && p.catch) p.catch(function () {}); }, { once: true });
       heroVid.load();
     });

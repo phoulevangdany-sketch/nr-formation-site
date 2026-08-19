@@ -416,7 +416,7 @@ address{font-style:normal}
 /* vidéo d’ambiance du héros (grand écran uniquement, chargée après la page, fondu à l’apparition) */
 .heros__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;z-index:-2;opacity:0;transition:opacity 1.2s ease}
 .heros__video.prete{opacity:1}
-@media (max-width:899px),(prefers-reduced-motion:reduce){.heros__video{display:none}}
+@media (prefers-reduced-motion:reduce){.heros__video{display:none}}
 .pied__signature{color:#fff;font-weight:600;letter-spacing:.02em;display:inline-block;margin-bottom:.5rem}
 
 /* ---------- Barre d’action mobile ---------- */
