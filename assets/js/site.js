@@ -3,9 +3,17 @@
   "use strict";
   document.documentElement.classList.remove("no-js");
 
-  /* Vidéo de signature : pas de lecture automatique si l'utilisateur a réduit les animations */
-  var vid = document.querySelector(".signature__video");
-  if (vid && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { try { vid.pause(); vid.removeAttribute("autoplay"); } catch (e) {} }
+  /* Vidéo d'ambiance du héros : seulement sur grand écran, sans économie de données ni réduction des animations ; chargée après le reste */
+  var heroVid = document.querySelector(".heros__video");
+  if (heroVid && window.matchMedia && window.matchMedia("(min-width: 900px)").matches
+      && !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      && !(navigator.connection && navigator.connection.saveData)) {
+    window.addEventListener("load", function () {
+      heroVid.src = heroVid.getAttribute("data-src");
+      heroVid.addEventListener("canplay", function () { heroVid.classList.add("prete"); var p = heroVid.play(); if (p && p.catch) p.catch(function () {}); }, { once: true });
+      heroVid.load();
+    });
+  }
 
   /* Menu mobile */
   var burger = document.querySelector(".burger");
